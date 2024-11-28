@@ -16,8 +16,8 @@ struct DateDetailView: View {
     var body: some View {
         Form {
             Section(header: Text("Details")) {
-                Text(dateEntry.title)
-                    .font(.headline)
+                Label("Chicago, IL", systemImage: "mappin.and.ellipse")
+                    .font(.title)
                 Text(dateEntry.date, style: .date)
                     .foregroundColor(.gray)
             }
@@ -51,6 +51,6 @@ struct DateDetailView: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .navigationTitle("Date Details")
+        .navigationTitle(dateEntry.title)
     }
 }

@@ -46,7 +46,7 @@ struct DateListView: View {
             NavigationStack {
                 AddDateView()
                     .scrollContentBackground(.hidden)
-                    .presentationBackground(.ultraThinMaterial)
+                    .presentationBackground(.thinMaterial)
             }
             .accentColor(.black)
         }

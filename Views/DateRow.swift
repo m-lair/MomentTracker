@@ -25,8 +25,9 @@ struct DateRow: View {
                 if let uiImage = UIImage(data: imageData[0]) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(maxWidth: .infinity, maxHeight: 100)
+                        .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }

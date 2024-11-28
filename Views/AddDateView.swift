@@ -43,7 +43,6 @@ struct AddDateView: View {
                     Label(!selectedPhotos.isEmpty ? "Change Photos" : "Select a photo" , systemImage: "photo")
                 }
                 .scrollContentBackground(.hidden)
-                .presentationBackground(Color.yellow.opacity(0.2))
                 .onChange(of: selectedPhotos) {
                     loadSelectedPhotos()
                 }
@@ -55,8 +54,7 @@ struct AddDateView: View {
                                 Image(uiImage: image)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(height: 200)  // Fixed height for consistency
-                                    .frame(width: 200)   // Fixed width for consistency
+                                    .frame(width: 200, height: 200)  // Fixed height for consistency
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     .shadow(radius: 3)   // Optional: adds subtle shadow
                             }
