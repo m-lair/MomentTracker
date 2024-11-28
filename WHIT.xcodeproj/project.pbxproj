@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2C741B842CF82C2200E7C795 /* DateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C741B832CF82C2200E7C795 /* DateRow.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2C741B4E2CF7D08C00E7C795 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		2C741B3B2CF7D08A00E7C795 /* WHIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WHIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C741B4D2CF7D08C00E7C795 /* WHITTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHITTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C741B572CF7D08C00E7C795 /* WHITUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C741B832CF82C2200E7C795 /* DateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +48,16 @@
 		2C741B5A2CF7D08C00E7C795 /* WHITUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = WHITUITests;
+			sourceTree = "<group>";
+		};
+		2C741B6F2CF7D1BA00E7C795 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2C741B7E2CF7FEEF00E7C795 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,9 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				2C741B3D2CF7D08A00E7C795 /* WHIT */,
+				2C741B7E2CF7FEEF00E7C795 /* Model */,
+				2C741B6F2CF7D1BA00E7C795 /* Views */,
 				2C741B502CF7D08C00E7C795 /* WHITTests */,
 				2C741B5A2CF7D08C00E7C795 /* WHITUITests */,
 				2C741B3C2CF7D08A00E7C795 /* Products */,
+				2C741B832CF82C2200E7C795 /* DateRow.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +127,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2C741B3D2CF7D08A00E7C795 /* WHIT */,
+				2C741B6F2CF7D1BA00E7C795 /* Views */,
+				2C741B7E2CF7FEEF00E7C795 /* Model */,
 			);
 			name = WHIT;
 			packageProductDependencies = (
@@ -236,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C741B842CF82C2200E7C795 /* DateRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

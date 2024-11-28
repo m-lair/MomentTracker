@@ -10,23 +10,35 @@ import SwiftData
 
 @main
 struct WHITApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+    let container: ModelContainer
+    @State private var startAnimation: Bool = false
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    
+    init() {
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            container = try ModelContainer(for: DateEntry.self)
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            fatalError("Failed to initialize ModelContainer")
         }
-    }()
-
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                if !hasSeenOnboarding {
+                    OnboardingView()
+                } else {
+                    DateListView()
+                        .background(MeshGradientView(baseColor: .blue).opacity(0.5))
+                        .toolbarColorScheme(.dark, for: .navigationBar)
+                }
+            }
+            .accentColor(.black)
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(container)
     }
+}
+
+#Preview {
+    DateListView()
 }
