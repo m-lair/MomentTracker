@@ -12,7 +12,7 @@ import SwiftData
 struct WHITApp: App {
     let container: ModelContainer
     @State private var startAnimation: Bool = false
-    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @AppStorage("hasSeenOnboarding") var hasSeenOnboarding = false
     
     init() {
         do {

@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		2C741B842CF82C2200E7C795 /* DateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C741B832CF82C2200E7C795 /* DateRow.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		2C741B4E2CF7D08C00E7C795 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -31,7 +27,6 @@
 		2C741B3B2CF7D08A00E7C795 /* WHIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WHIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C741B4D2CF7D08C00E7C795 /* WHITTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHITTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C741B572CF7D08C00E7C795 /* WHITUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C741B832CF82C2200E7C795 /* DateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,7 +91,6 @@
 				2C741B502CF7D08C00E7C795 /* WHITTests */,
 				2C741B5A2CF7D08C00E7C795 /* WHITUITests */,
 				2C741B3C2CF7D08A00E7C795 /* Products */,
-				2C741B832CF82C2200E7C795 /* DateRow.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,7 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C741B842CF82C2200E7C795 /* DateRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
