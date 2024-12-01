@@ -40,6 +40,7 @@ struct DateListView: View {
         .toolbar {
             Button(action: { showingAddDate = true }) {
                 Image(systemName: "plus")
+                    .bold()
             }
         }
         .sheet(isPresented: $showingAddDate) {
@@ -48,7 +49,6 @@ struct DateListView: View {
                     .scrollContentBackground(.hidden)
                     .presentationBackground(.thinMaterial)
             }
-            .accentColor(.black)
         }
     }
     

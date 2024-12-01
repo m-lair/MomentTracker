@@ -113,7 +113,7 @@ struct AddDateView: View {
                 }
                 
                 for await result in taskGroup {
-                    if let error = result.1 {
+                    if result.1 != nil {
                         break
                     } else if let image = result.0 {
                         images.append(image)
