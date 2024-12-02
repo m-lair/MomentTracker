@@ -3,7 +3,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class DateEntry {
+class DateEntry: Identifiable {
     @Attribute(.unique) var id: UUID
     var title: String
     var details: String

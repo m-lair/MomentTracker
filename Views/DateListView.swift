@@ -5,41 +5,44 @@
 //  Created by Marcus Lair on 11/27/24.
 //
 
-
-// DateListView.swift
 import SwiftUI
 import SwiftData
 
 struct DateListView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \DateEntry.date, order: .reverse) private var dates: [DateEntry]
-    @Namespace private var animation
-    @State private var animateGradient: Bool = false
+    @Namespace private var namespace
+    var screenWidth = UIScreen.main.bounds.width
+    @Query(sort: \DateEntry.date, order: .forward) private var dates: [DateEntry]
     @State private var showingAddDate = false
+    @State private var triggerHaptic = false
     
     var body: some View {
-        List {
-            ForEach(dates) { dateEntry in
-                NavigationLink {
-                    DateDetailView(dateEntry: dateEntry)
-                        .background(MeshGradientView(baseColor: .red))
-                        .navigationTransition(.zoom(sourceID: "icon", in: animation))
-                } label: {
-                    DateRow(dateEntry: dateEntry)
-                        .matchedTransitionSource(id: "icon", in: animation)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(dates) { moment in
+                    NavigationLink(value: moment) {
+                        MomentCardView(dateEntry: moment)
+                            .scrollTransition(axis: .horizontal) { content, phase in
+                                content
+                                    .scaleEffect(phase.isIdentity ? 1.0 : 0.95)
+                                    .opacity(phase.isIdentity ? 1.0 : 0.8)
+                            }
+                    }
                 }
-                .buttonStyle(.plain)
             }
-            .onDelete(perform: deleteDates)
-            .listRowBackground(Color.white.opacity(0.5))
         }
-        .scrollContentBackground(.hidden)
-        .navigationTitle("Date Tracker")
+        .contentMargins(10)
+        .scrollTargetBehavior(.paging)
+        .navigationDestination(for: DateEntry.self) { dateEntry in
+            DateDetailView(dateEntry: dateEntry)
+                
+        }
+        
+        .navigationTitle("Moment Tracker")
         .toolbar {
             Button(action: { showingAddDate = true }) {
                 Image(systemName: "plus")
+                    .bold()
             }
         }
         .sheet(isPresented: $showingAddDate) {
@@ -48,13 +51,6 @@ struct DateListView: View {
                     .scrollContentBackground(.hidden)
                     .presentationBackground(.thinMaterial)
             }
-            .accentColor(.black)
-        }
-    }
-    
-    private func deleteDates(at offsets: IndexSet) {
-        for index in offsets {
-            modelContext.delete(dates[index])
         }
     }
 }

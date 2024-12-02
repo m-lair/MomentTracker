@@ -50,6 +50,7 @@ struct DateDetailView: View {
                 .listRowBackground(Color.white.opacity(0.5))
             }
         }
+        .background(MeshGradientView(baseColor: .white))
         .scrollContentBackground(.hidden)
         .navigationTitle(dateEntry.title)
     }
