@@ -29,7 +29,7 @@ struct WHITApp: App {
                     OnboardingView()
                 } else {
                     DateListView()
-                        .background(MeshGradientView(baseColor: .blue).opacity(0.5))
+                        .background(MeshGradientView(baseColor: .white).opacity(0.5))
                         .toolbarColorScheme(.dark, for: .navigationBar)
                 }
             }

@@ -24,23 +24,26 @@ struct AddDateView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Date Details")) {
+            Section {
                 TextField("Title", text: $title)
-                DatePicker("Date", selection: $date)
             }
-            .foregroundStyle(.black)
+            .listRowBackground(Color.white.opacity(0.5))
+            
+            Section {
+                DatePicker("Date", selection: $date)
+                    .datePickerStyle(.graphical)
+            }
             .listRowBackground(Color.white.opacity(0.5))
             
             Section(header: Text("Notes")) {
                 TextEditor(text: $details)
                     .frame(height: 100)
             }
-            .foregroundStyle(.black)
             .listRowBackground(Color.white.opacity(0.5))
             
             Section {
                 PhotosPicker(selection: $selectedPhotos, maxSelectionCount: 3, matching: .images) {
-                    Label(!selectedPhotos.isEmpty ? "Change Photos" : "Select a photo" , systemImage: "photo")
+                    Label(!selectedPhotos.isEmpty ? "Change Photos" : "Select Photos" , systemImage: "photo")
                 }
                 .scrollContentBackground(.hidden)
                 .onChange(of: selectedPhotos) {
@@ -63,7 +66,6 @@ struct AddDateView: View {
                     }
                 }
             }
-            .foregroundStyle(.black)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.white.opacity(0.5))
         }
