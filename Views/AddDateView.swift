@@ -24,12 +24,12 @@ struct AddDateView: View {
     
     var body: some View {
         Form {
-            Section {
+            Section(header: Text("Title")) {
                 TextField("Title", text: $title)
             }
             .listRowBackground(Color.white.opacity(0.5))
             
-            Section {
+            Section(header: Text("Date")) {
                 DatePicker("Date", selection: $date)
                     .datePickerStyle(.graphical)
             }

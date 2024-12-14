@@ -12,7 +12,15 @@ struct MomentCardView: View {
     @Environment(\.modelContext) private var modelContext
     let dateEntry: DateEntry
     @State private var showDeleteConfirmation = false
-    
+    @State private var showEditConfirmation = false
+    @State private var showAddConfirmation = false
+    @State private var showAddImageConfirmation = false
+    @State private var showAddLocationConfirmation = false
+    @State private var showAddVideoConfirmation = false
+    @State private var showAddAudioConfirmation = false
+    @State private var showAddLinkConfirmation = false
+    @State private var isShowingDeleteConfirmation = false
+    @State private var isHighlighted: Bool = false
     var body: some View {
         VStack {
             if let imageData = dateEntry.imageData, !imageData.isEmpty,
@@ -21,6 +29,7 @@ struct MomentCardView: View {
                     .resizable()
                     .scaledToFit()
                     .clipped()
+                    .overlay(isHighlighted ? Color.white.opacity(0.5) : Color.clear)
             }
             else {
                 Image("Sample Image 1")
@@ -28,46 +37,45 @@ struct MomentCardView: View {
                     .scaledToFit()
                     .clipped()
             }
-            
             HStack {
                 VStack(alignment: .leading) {
                     Text(dateEntry.title)
-                        .font(.title2)
+                        .font(.title)
                         .fontWeight(.bold)
-                    
                     Text(dateEntry.date.formatted(date: .abbreviated, time: .omitted))
-                        .font(.subheadline)
-                    
-                    if !dateEntry.details.isEmpty {
-                        Text(dateEntry.details)
-                            .font(.body)
-                            .lineLimit(2)
-                    }
+                        .font(.caption)
+                        .padding(.leading, 5)
                 }
-                .padding()
                 Spacer()
             }
-            
         }
+        .padding()
+        .background(.white)
+        .frame(maxWidth: UIScreen.main.bounds.width - 50, maxHeight: 500)
         .clipped()
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(radius: 8, y: 4)
-        .frame(width: (UIScreen.main.bounds.width - 20), height: (UIScreen.main.bounds.height))
         .onLongPressGesture {
-            showDeleteConfirmation = true
+            withAnimation {
+                isHighlighted = true
+            }
+            isShowingDeleteConfirmation = true
         }
         .confirmationDialog(
             "Delete this moment?",
-            isPresented: $showDeleteConfirmation,
+            isPresented: $isShowingDeleteConfirmation,
             titleVisibility: .visible
         ) {
-            Button("Delete", role: .destructive) {
+            Button(role: .destructive) {
                 modelContext.delete(dateEntry)
-                try? modelContext.save()
+            } label: {
+                Label("Delete", systemImage: "trash")
             }
+            
             Button("Cancel", role: .cancel) {
-                showDeleteConfirmation = false
+                isShowingDeleteConfirmation = false
+                withAnimation {
+                    isHighlighted = false
+                }
             }
         } message: {
             Text("This action cannot be undone")

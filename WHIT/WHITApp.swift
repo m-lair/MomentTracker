@@ -31,6 +31,14 @@ struct WHITApp: App {
                     DateListView()
                         .background(MeshGradientView(baseColor: .white).opacity(0.5))
                         .toolbarColorScheme(.dark, for: .navigationBar)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                NavigationLink(destination: CalendarView()) {
+                                    Image(systemName: "calendar")
+                                }
+                            }
+                        }
+                    
                 }
             }
             .accentColor(.black)
