@@ -11,45 +11,57 @@ import SwiftData
 struct DateListView: View {
     @Environment(\.modelContext) private var modelContext
     @Namespace private var namespace
-    var screenWidth = UIScreen.main.bounds.width
     @Query(sort: \DateEntry.date, order: .forward) private var dates: [DateEntry]
     @State private var showingAddDate = false
-    @State private var triggerHaptic = false
+    
+    let cardWidth = UIScreen.main.bounds.width * 0.8
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack {
-                ForEach(dates) { moment in
-                    NavigationLink(value: moment) {
-                        MomentCardView(dateEntry: moment)
-                            .scrollTransition(axis: .horizontal) { content, phase in
-                                content
-                                    .scaleEffect(phase.isIdentity ? 1.0 : 0.95)
-                                    .opacity(phase.isIdentity ? 1.0 : 0.8)
+        VStack{
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(alignment: .top) {
+                    ForEach(dates) { moment in
+                        VStack {
+                            NavigationLink(value: moment) {
+                                MomentCardView(dateEntry: moment)
+                                    .frame(width: cardWidth)
+                                    .scrollTransition(axis: .horizontal) { content, phase in
+                                        content
+                                            .scaleEffect(phase.isIdentity ? 1.0 : 0.95)
+                                            .opacity(phase.isIdentity ? 1.0 : 0.8)
+                                    }
                             }
+                            Text(moment.details)
+                                .font(.body)
+                                .frame(width: cardWidth)
+                                .scrollTransition(axis: .horizontal) { content, phase in
+                                    content
+                                        .scaleEffect(phase.isIdentity ? 1.0 : 0.95)
+                                        .opacity(phase.isIdentity ? 1.0 : 0.0)
+                                }
+                                
+                        }
                     }
                 }
             }
-        }
-        .contentMargins(10)
-        .scrollTargetBehavior(.paging)
-        .navigationDestination(for: DateEntry.self) { dateEntry in
-            DateDetailView(dateEntry: dateEntry)
-                
-        }
-        
-        .navigationTitle("Moment Tracker")
-        .toolbar {
-            Button(action: { showingAddDate = true }) {
-                Image(systemName: "plus")
-                    .bold()
+            .contentMargins(.horizontal, 10)
+            .navigationDestination(for: DateEntry.self) { dateEntry in
+                DateDetailView(dateEntry: dateEntry)
+                    
             }
-        }
-        .sheet(isPresented: $showingAddDate) {
-            NavigationStack {
-                AddDateView()
-                    .scrollContentBackground(.hidden)
-                    .presentationBackground(.thinMaterial)
+            .navigationTitle("Moment Tracker")
+            .toolbar {
+                Button(action: { showingAddDate = true }) {
+                    Image(systemName: "plus")
+                        .bold()
+                }
+            }
+            .sheet(isPresented: $showingAddDate) {
+                NavigationStack {
+                    AddDateView()
+                        .scrollContentBackground(.hidden)
+                        .presentationBackground(.thinMaterial)
+                }
             }
         }
     }

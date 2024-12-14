@@ -16,8 +16,6 @@ struct DateDetailView: View {
     var body: some View {
         Form {
             Section(header: Text("Details")) {
-                Label("Chicago, IL", systemImage: "mappin.and.ellipse")
-                    .font(.title)
                 Text(dateEntry.date, style: .date)
                     .foregroundColor(.gray)
             }
