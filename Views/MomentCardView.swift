@@ -22,38 +22,50 @@ struct MomentCardView: View {
     @State private var isShowingDeleteConfirmation = false
     @State private var isHighlighted: Bool = false
     var body: some View {
-        VStack {
-            if let imageData = dateEntry.imageData, !imageData.isEmpty,
-               let uiImage = UIImage(data: imageData[0]) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFit()
-                    .clipped()
-                    .overlay(isHighlighted ? Color.white.opacity(0.5) : Color.clear)
-            }
-            else {
-                Image("Sample Image 1")
-                    .resizable()
-                    .scaledToFit()
-                    .clipped()
-            }
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(dateEntry.title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Text(dateEntry.date.formatted(date: .abbreviated, time: .omitted))
-                        .font(.caption)
-                        .padding(.leading, 5)
+        ZStack {
+            // The white "Polaroid" background
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+                .shadow(radius: 8, y: 4)
+            
+            VStack {
+                // The image section
+                Group {
+                    if let imageData = dateEntry.imageData,
+                       !imageData.isEmpty,
+                       let uiImage = UIImage(data: imageData[0]) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .overlay(isHighlighted ? Color.white.opacity(0.5) : Color.clear)
+                            .clipped()
+                    } else {
+                        Image("Sample Image 1")
+                            .resizable()
+                            .scaledToFit()
+                            .overlay(Rectangle().stroke(Color.white, lineWidth: 12))
+                            .clipped()
+                    }
                 }
-                Spacer()
+                
+                // Title and date
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(dateEntry.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
+                        Text(dateEntry.date.formatted(date: .abbreviated, time: .omitted))
+                            .font(.caption)
+                            .padding(.leading, 5)
+                    }
+                    Spacer()
+                }
+                .padding(5)
             }
+            .padding()
         }
-        .padding()
-        .background(.white)
-        .frame(maxWidth: UIScreen.main.bounds.width - 50, maxHeight: 500)
-        .clipped()
-        .shadow(radius: 8, y: 4)
+        .frame(maxWidth: UIScreen.main.bounds.width - 40, maxHeight: 500) // Adjust if you want more/less width
         .onLongPressGesture {
             withAnimation {
                 isHighlighted = true
@@ -67,6 +79,11 @@ struct MomentCardView: View {
         ) {
             Button(role: .destructive) {
                 modelContext.delete(dateEntry)
+                do {
+                    try modelContext.save()
+                } catch {
+                    print("error deleting")
+                }
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -82,6 +99,8 @@ struct MomentCardView: View {
         }
     }
 }
+
+
 
 #Preview {
     MomentCardView(dateEntry: DateEntry(title: "Test Title", details: "Moments of joy", date: Date()))

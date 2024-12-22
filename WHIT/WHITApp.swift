@@ -17,6 +17,17 @@ struct WHITApp: App {
     init() {
         do {
             container = try ModelContainer(for: DateEntry.self)
+            // Check if entries exist
+            let context = container.mainContext
+            let fetchDescriptor = FetchDescriptor<DateEntry>()
+            
+            let existingEntries = try context.fetch(fetchDescriptor)
+            
+            if existingEntries.isEmpty {
+                // No entries exist, add default data
+                let seedEntries = DateEntrySeedData.defaultEntries()
+                seedEntries.forEach { context.insert($0) }
+            }
         } catch {
             fatalError("Failed to initialize ModelContainer")
         }
