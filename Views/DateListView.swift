@@ -44,6 +44,7 @@ struct DateListView: View {
                     }
                 }
             }
+            
             .contentMargins(.horizontal, 10)
             .navigationDestination(for: DateEntry.self) { dateEntry in
                 DateDetailView(dateEntry: dateEntry)

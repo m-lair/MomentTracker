@@ -4,6 +4,7 @@ import SwiftData
 struct CalendarView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showAddEntryButton: Bool = false
+    @State private var addEntry: Bool = false
     
     @Query private var entries: [DateEntry]
     @State private var selectedDate: Date?
@@ -22,14 +23,6 @@ struct CalendarView: View {
                 .opacity(0.5)
                 .ignoresSafeArea()
             VStack(spacing: 20) {
-                Button("Schedule or Add Entry") {
-                    
-                }
-                .fontWeight(.bold)
-                .frame(width: screenWidth, height: 50)
-                .buttonStyle(.bordered)
-                .padding()
-                
                 HStack {
                     Button(action: previousMonth) {
                         Image(systemName: "chevron.left")
