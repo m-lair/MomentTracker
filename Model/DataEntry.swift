@@ -183,7 +183,7 @@ struct DateEntrySeedData {
         if let date = Date.from(year: 2024, month: 12, day: 12) {
             let imageNames = ["sample image 9", "sample image 8"]
             let entry12 = DateEntry(
-                title: "Dinner Date to celebrate us dating!💕",
+                title: "Dinner Date💕",
                 details: "This was after we just started dating and I wanted to take you out for dinner! You finally let me plan the whole evening😉 Then we went to a show down the street (I thought it was going to be christmas music but it wasnt lol)",
                 date: date
             )
@@ -217,7 +217,7 @@ struct DateEntrySeedData {
         if let date = Date.from(year: 2024, month: 12, day: 19) {
             let imageNames = ["sample image 5", "sample image"]
             let entry3 = DateEntry(
-                title: "Christmas Murder Mystery Dinner🍽️",
+                title: "Murder Mystery Dinner🍽️",
                 details: "You came out with us to dinner and to solve the case of Bill Loney's murder! We had a great time and got some great ideas for our next Christmas party! Special Mention to Sam as Bob Katz as well",
                 date: date
             )

@@ -69,7 +69,6 @@ struct AddDateView: View {
             .listRowSeparator(.hidden)
             .listRowBackground(Color.white.opacity(0.5))
         }
-        .colorScheme(.light)
         .navigationTitle("Add New Date")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{

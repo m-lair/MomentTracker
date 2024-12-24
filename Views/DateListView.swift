@@ -42,9 +42,16 @@ struct DateListView: View {
                                 
                         }
                     }
+                    VStack {
+                        Text("Thank you for sharing all these moments with me. You have made me feel so many feelings in such a short time and I so am grateful for your kindness, your thoughfulness, and how much love you give. Not even just to me but to everyone around you. It feels like I could overcome anything as long as I had you by my side and I hope I can be that for you as well. I love you so much!❤️")
+                        Text("-marcus")
+                            .padding()
+                            .padding(.leading, 100)
+                    }
+                    .frame(width: cardWidth)
+                    .padding(.top, 100)
                 }
             }
-            
             .contentMargins(.horizontal, 10)
             .navigationDestination(for: DateEntry.self) { dateEntry in
                 DateDetailView(dateEntry: dateEntry)
