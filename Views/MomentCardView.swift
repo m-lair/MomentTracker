@@ -54,14 +54,15 @@ struct MomentCardView: View {
                         Text(dateEntry.title)
                             .font(.title2)
                             .fontWeight(.bold)
-                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
                         Text(dateEntry.date.formatted(date: .abbreviated, time: .omitted))
                             .font(.caption)
                             .padding(.leading, 5)
                     }
                     Spacer()
+                    Label("\(dateEntry.imageData?.count ?? 0)", systemImage: "photo")
                 }
-                .padding(5)
+                .padding([.leading, .top], 5)
             }
             .padding()
         }
